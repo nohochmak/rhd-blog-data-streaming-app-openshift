@@ -6,4 +6,4 @@ In this in-depth article, you're going to learn how to build an end-to-end react
 
 **The final result is a colorful live dashboard tracking the usage of emojis in public 🐘 Mastodon 🐘 posts (a.k.a toots ).**
 
-👉 Read the full article on the Red Hat Developer blog [here](). 👈
+👉 Read the full article on the Red Hat Developer blog [here](https://developers.redhat.com/articles/2024/06/14/stateful-and-reactive-stream-processing-applications-apache-kafka-quarkus-and). 👈
