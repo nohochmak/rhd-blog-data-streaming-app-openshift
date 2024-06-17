@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ng-emoji-dashboard
+spec:
+  ports:
+  - name: 80-tcp
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: ng-emoji-dashboard  
+  type: ClusterIP
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ng-emoji-dashboard
+  labels:
+    app.openshift.io/runtime: angularjs
+    app.kubernetes.io/part-of: streaming-apps
+  annotations:
+    app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"StatefulSet","name":"quarkus-kstreams-emoji-tracker"}]'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ng-emoji-dashboard
+  template:
+    metadata:
+      labels:
+        app: ng-emoji-dashboard
+    spec:
+      containers:
+      - name: ng-emoji-dashboard
+        image: quay.io/hgrahsl/emoji-dashboard:1.0
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        - containerPort: 8080
+          protocol: TCP
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: API_PORT
+          value: "80"
+        - name: QUEUE_SIZE
+          value: "25"
+        - name: TOP_N_SIZE
+          value: "75"
+      restartPolicy: Always
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ng-emoji-dashboard
+spec:
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: ng-emoji-dashboard

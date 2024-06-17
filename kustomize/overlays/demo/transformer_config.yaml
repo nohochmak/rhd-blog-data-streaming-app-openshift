@@ -1,0 +1,3 @@
+varReference:
+  - path: spec/host
+  - path: spec/template/spec/dnsConfig/searches

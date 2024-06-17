@@ -1,0 +1,79 @@
+version: '3.0'
+services:
+
+  kafka:
+    container_name: kafka
+    image: quay.io/strimzi/kafka:0.40.0-kafka-3.7.0
+    command:
+      - /bin/sh
+      - -c
+      - './bin/kafka-storage.sh format -t DQ6hZ8VBSN-qmOtD97TzBA -c ./config/kraft/server.properties && ./bin/kafka-server-start.sh ./config/kraft/server.properties --override advertised.listeners=$${KAFKA_ADVERTISED_LISTENERS}'
+    ports:
+      - "9092:9092"
+    environment:
+      - LOG_DIR=/tmp/logs
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+    networks:
+      - demo-network 
+
+  toots-faker:
+    image: quay.io/hgrahsl/toots-faker:1.0
+    build:
+      context: toots-faker
+      dockerfile: src/main/docker/Dockerfile.jvm
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      TOOTSFAKER_TWEET_INTERVAL_MS: 1000
+      TOOTSFAKER_MAX_TWEET_LENGTH: 320
+    networks:
+      - demo-network
+
+  ### ONCE YOU HAVE A VALID MASTODON API TOKEN USE THE HARVESTER INSTEAD OF THE FAKER ABOVE
+  # toots-harvester:
+  #   image: quay.io/hgrahsl/toots-harvester:1.0
+  #   build:
+  #     context: toots-harvester
+  #     dockerfile: src/main/docker/Dockerfile.jvm
+  #   depends_on:
+  #     - kafka
+  #   environment:
+  #     KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+  #     MASTODON_API_ACCESS_TOKEN: <YOUR_API_TOKEN_HERE>
+  #   networks:
+  #     - demo-network
+
+  emoji-tracker:
+    image: quay.io/hgrahsl/emoji-tracker:1.0
+    build:
+      context: emoji-tracker
+      dockerfile: src/main/docker/Dockerfile.jvm
+    depends_on:
+      - kafka
+    ports:
+      - 8080:8080
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      QUARKUS_HTTP_HOST: 0.0.0.0
+    networks:
+      - demo-network
+
+  dashboard-ui:
+    image: quay.io/hgrahsl/emoji-dashboard:1.0
+    build:
+      context: dashboard-ui
+      dockerfile: Dockerfile
+    depends_on:
+      - emoji-tracker
+    ports:
+      - 4200:8080
+    environment:
+      API_HOST: localhost
+      API_PORT: 8080
+    networks:
+      - demo-network
+
+networks:
+  demo-network:
+    name: mastodon-emojis-tracking

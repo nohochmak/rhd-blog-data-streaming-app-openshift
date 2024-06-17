@@ -1,0 +1,19 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ng-emoji-dashboard
+spec:
+  template:
+    spec:
+      containers:
+      - name: ng-emoji-dashboard
+        env:
+        - name: API_HOST
+          value: quarkus-kstreams-emoji-tracker-$(MY_NAMESPACE)$(MY_SANDBOX_ID)
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ng-emoji-dashboard
+spec:
+  host: ng-emoji-dashboard-$(MY_NAMESPACE)$(MY_SANDBOX_ID)

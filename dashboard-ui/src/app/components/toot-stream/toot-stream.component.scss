@@ -1,0 +1,14 @@
+@import '../../../styles.scss';
+
+.wrapper {
+  @extend .flex-center;
+}
+
+.placeholder {
+  @extend .flex-center;
+
+  height: 100%;
+  font-size: 16pt;
+  color: $text-secondary;
+}
+

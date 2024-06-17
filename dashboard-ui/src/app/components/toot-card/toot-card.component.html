@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <a target="_blank" href="{{tootCard.url}}">
+      <div [@incoming] class="toot card m-2 p-2 px-2">
+          <div [innerHTML]="tootCard.content"></div>
+          <br/><br/> 
+          author: <a target="_blank" href="{{tootCard.account.url}}">&#64;{{tootCard.account.username}}</a>
+          <br/>
+          <i>{{tootCard.created_at}}</i>
+      </div>
+    </a>
+</div>

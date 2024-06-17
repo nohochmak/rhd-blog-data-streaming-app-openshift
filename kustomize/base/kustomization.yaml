@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - kafka.yaml
+  #- toots-harvester.yaml
+  - toots-faker.yaml
+  - emoji-tracker.yaml
+  - emoji-dashboard.yaml

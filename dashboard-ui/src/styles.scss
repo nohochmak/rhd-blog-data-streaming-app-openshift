@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+$text-primary: #fff;
+$text-secondary: #bbb;
+$primary: #444;
+
+$bubble-size: 2.8rem;
+$bubble-inner-offset: 0rem;
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a,a:link,a:visited,a:hover,a:active {
+  color: $text-primary;
+  text-decoration: none;
+}
+

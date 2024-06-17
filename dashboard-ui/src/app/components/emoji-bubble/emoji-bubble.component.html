@@ -1,0 +1,8 @@
+<div routerLink="/dashboard" [queryParams]="{emoji: emojiData.emoji}" class="emoji-count-bubble" [ngClass]="getRankedClass()">
+    <div class="emoji">
+      <span>{{emojiData.emoji}}</span>
+    </div>
+    <div class="count">
+      <span>{{emojiData.count}}</span>
+    </div>
+  </div>

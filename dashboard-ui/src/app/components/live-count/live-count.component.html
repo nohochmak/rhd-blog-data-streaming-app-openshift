@@ -1,0 +1,4 @@
+
+<div class="wrapper">
+    <app-emoji-bubble [@incoming] *ngFor="let emojiCount of (emojiUpdateQueue$ | async); trackBy: trackBy; index as ranking" [emojiData]="emojiCount"></app-emoji-bubble>
+</div>

@@ -1,0 +1,17 @@
+
+<div *ngIf="!(emojiTootStream$ | async)?.length" class="placeholder">
+  Waiting for Toots
+</div>
+
+<app-tweet-card *ngFor="let tootData of (emojiTootStream$ | async)" [tootData]="tootData"></app-tweet-card>
+
+<!--
+<div class="wrapper" *ngFor="let tweet of (emojiTweetStream$ | async)">
+    <div [@incoming] class="tweet card m-2 p-2 px-2">
+        {{tweet.item2}}
+    </div>
+</div>
+-->
+
+
+

@@ -1,0 +1,84 @@
+@import '../../../styles.scss';
+
+.emoji-count-bubble {
+  @extend .flex-center;
+
+  width: 8rem;
+  height: $bubble-size;
+  max-height: 30rem;
+  display: inline-flex;
+  background: #444;
+  font-size: 14pt;
+  border-radius: $bubble-size * 2;
+  margin: $bubble-inner-offset + 0.3rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: box-shadow 0.2s ease-out;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+
+  .emoji {
+    @extend .flex-center;
+    box-sizing: border-box;
+    position: relative;
+    left: -$bubble-inner-offset;
+    top: -$bubble-inner-offset;
+    background: $text-primary;
+    height: $bubble-size + $bubble-inner-offset * 2;
+    width: $bubble-size + $bubble-inner-offset * 2;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    font-size: $bubble-size * 0.5;
+  }
+
+  .count {
+    @extend .flex-center;
+    flex: 1;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #eee;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+
+  &::after {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    animation: pulse 0.5s;
+    background: linear-gradient(90deg, transparent, rgba(#fff, 0.3), transparent);
+    content: '';
+    transform: translateX(100%);
+    border-radius: 4rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+
+  &.first {
+    background: #b09a47;
+    .emoji {
+      border-color: #b09a47;
+    }
+  }
+  &.second {
+    background: #8b8679;
+    .emoji {
+      border-color: #8b8679;
+    }
+  }
+  &.third {
+    background: #9c5221;
+    .emoji {
+      border-color: #9c5221;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateX(-100%);
+  }
+}

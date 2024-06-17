@@ -1,0 +1,20 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: quarkus-kstreams-emoji-tracker
+spec:
+  template:
+    metadata:
+      labels:
+        app: quarkus-kstreams-emoji-tracker
+    spec:
+      dnsConfig:
+        searches:
+          - quarkus-kstreams-emoji-tracker.$(MY_NAMESPACE).svc.cluster.local
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: quarkus-kstreams-emoji-tracker
+spec:
+  host: quarkus-kstreams-emoji-tracker-$(MY_NAMESPACE)$(MY_SANDBOX_ID)

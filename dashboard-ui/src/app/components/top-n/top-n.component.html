@@ -1,0 +1,3 @@
+<div class="wrapper">
+    <app-emoji-bubble *ngFor="let emojiDataObject of (currentTopN$ | async | sortEmoji | sliceCollection:topNSize) trackBy: trackBy; index as ranking" [emojiData]="emojiDataObject" [ranking]="ranking"></app-emoji-bubble>
+</div>
