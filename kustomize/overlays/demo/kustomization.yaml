@@ -13,7 +13,7 @@ configMapGenerator:
 secretGenerator:
 - name: mastodon-api
   literals:
-    - access-token=sha256~5lmywtv_8j0kuo3m-0Qyy0CXlpa77p-M33k9S_JlToE
+    - access-token=sha256~HS3K9RScdw24wjIX_UKH3VpBQwVqszJg_twWpbqqe0c
 
 vars:
 - name: MY_NAMESPACE
