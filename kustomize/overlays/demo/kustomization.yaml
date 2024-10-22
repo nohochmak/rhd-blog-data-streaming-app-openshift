@@ -8,7 +8,7 @@ configMapGenerator:
 - name: my-demo-config
   literals:
     - MY_NAMESPACE=banderle1-dev
-    - MY_SANDBOX_ID=banderle1
+    - MY_SANDBOX_ID=banderle1-dev.apps.sandbox-m3.1530.p1.openshiftapps.com
 
 secretGenerator:
 - name: mastodon-api
