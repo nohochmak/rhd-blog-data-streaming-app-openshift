@@ -7,13 +7,13 @@ resources:
 configMapGenerator:
 - name: my-demo-config
   literals:
-    - MY_NAMESPACE=<YOUR_NAMESPACE_HERE...>
-    - MY_SANDBOX_ID=<YOUR_SANDBOX_ID_HERE...>
+    - MY_NAMESPACE=banderle1-dev
+    - MY_SANDBOX_ID=banderle1
 
 secretGenerator:
 - name: mastodon-api
   literals:
-    - access-token=<YOUR_ACCESS_TOKEN_HERE...>
+    - access-token=sha256~5lmywtv_8j0kuo3m-0Qyy0CXlpa77p-M33k9S_JlToE
 
 vars:
 - name: MY_NAMESPACE
