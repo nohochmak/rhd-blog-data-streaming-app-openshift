@@ -7,13 +7,13 @@ resources:
 configMapGenerator:
 - name: my-demo-config
   literals:
-    - MY_NAMESPACE=banderle1-dev
-    - MY_SANDBOX_ID=.apps.sandbox-m3.1530.p1.openshiftapps.com
+    - MY_NAMESPACE=emojis
+    - MY_SANDBOX_ID=.apps.cluster-tchck.tchck.sandbox210.opentlc.com
 
 secretGenerator:
 - name: mastodon-api
   literals:
-    - access-token=sha256~HS3K9RScdw24wjIX_UKH3VpBQwVqszJg_twWpbqqe0c
+    - access-token=sha256~e-fo8J9My0oHQP59FRpNv3-o9EuNtT6nEShBHFMpOK0
 
 vars:
 - name: MY_NAMESPACE

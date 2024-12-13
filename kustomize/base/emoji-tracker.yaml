@@ -60,6 +60,9 @@ spec:
       name: kstreams-state-stores
     spec:
       accessModes: [ "ReadWriteOnce" ]
+      # For OpenShift Local (CRC)
+      #storageClassName: "crc-csi-hostpath-provisioner"
+      # Original storageClassName: "gp2-csi"
       storageClassName: "gp2-csi"
       resources:
         requests:
